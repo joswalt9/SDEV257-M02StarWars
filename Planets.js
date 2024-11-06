@@ -5,7 +5,7 @@ import styles from "./styles";
 export default function News({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>News Content</Text>
+      <Text>Plaents Content</Text>
     </View>
   );
 }
