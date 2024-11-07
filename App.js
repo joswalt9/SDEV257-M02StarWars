@@ -2,10 +2,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Platform } from "react-native";
-import Home from "./Home";
-import Planets from "./Planets";
-import Films from "./Films";
-import Spaceships from "./Spaceships";
+import Home from "./screens/Home";
+import Planets from "./screens/Planets";
+import Films from "./screens/Films";
+import Spaceships from "./screens/Spaceships";
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
