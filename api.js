@@ -33,25 +33,27 @@ export async function fetchItems(endpoint, filter = "", asc = true) {
 export async function fetchFilms(filter = "", asc = true) {
   try {
     console.log("Fetching films...");
-    const res = await fetch(`${BASE_URL}films`);
+    const res = await fetch(`${BASE_URL}/films`);
     const data = await res.json();
 
     console.log("Fetched films data:", data);
 
-    if (!data.results) {
+    if (!data.result) {
       console.error("No results found for films.");
       return [];
     }
 
     // Filter films by title
-    const filteredFilms = data.results.filter((film) =>
-      film.title.toLowerCase().includes(filter.toLowerCase())
+    const filteredFilms = data.result.filter((film) =>
+      film.properties.title.toLowerCase().includes(filter.toLowerCase())
     );
     console.log("Filtered films:", filteredFilms);
 
     // Sort films alphabetically by title
     const sortedFilms = filteredFilms.sort((a, b) =>
-      asc ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
+      asc
+        ? a.properties.title.localeCompare(b.title)
+        : b.properties.title.localeCompare(a.title)
     );
     console.log("Sorted films:", sortedFilms);
 

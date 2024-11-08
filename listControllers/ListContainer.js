@@ -64,7 +64,7 @@ export default function ListContainer({ endpoint }) {
       fetchFilms(filter, asc).then((items) => {
         const mappedData = items.map((item, i) => ({
           key: i.toString(),
-          value: item.title, // Use title for films
+          value: item.properties.title, // Use title for films
         }));
         setData(mappedData);
       });
