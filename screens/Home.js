@@ -5,12 +5,8 @@ import ListContainer from "../listControllers/ListContainer";
 
 export default function Home() {
   return (
-    // <View style={styles.container}>
-    //   <Text>Home Content</Text>
-    // </View>
-
-    <View style={styles.listContainer}>
-      <ListContainer />
+    <View style={styles.container}>
+      <Text>Home Content</Text>
     </View>
   );
 }
