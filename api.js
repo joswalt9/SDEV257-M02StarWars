@@ -36,8 +36,6 @@ export async function fetchFilms(filter = "", asc = true) {
     const res = await fetch(`${BASE_URL}/films`);
     const data = await res.json();
 
-    console.log("Fetched films data:", data);
-
     if (!data.result) {
       console.error("No results found for films.");
       return [];
@@ -47,7 +45,6 @@ export async function fetchFilms(filter = "", asc = true) {
     const filteredFilms = data.result.filter((film) =>
       film.properties.title.toLowerCase().includes(filter.toLowerCase())
     );
-    console.log("Filtered films:", filteredFilms);
 
     // Sort films alphabetically by title
     const sortedFilms = filteredFilms.sort((a, b) =>
@@ -55,7 +52,6 @@ export async function fetchFilms(filter = "", asc = true) {
         ? a.properties.title.localeCompare(b.title)
         : b.properties.title.localeCompare(a.title)
     );
-    console.log("Sorted films:", sortedFilms);
 
     return sortedFilms;
   } catch (error) {
