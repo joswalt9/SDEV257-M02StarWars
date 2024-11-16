@@ -22,14 +22,15 @@ export default function App() {
         </Tab.Navigator>
       )}
 
-      {(Platform.OS === "android" || Platform.OS === "web") && (
-        <Drawer.Navigator>
-          <Drawer.Screen name="Home" component={Home} />
-          <Drawer.Screen name="Planets" component={Planets} />
-          <Drawer.Screen name="Films" component={Films} />
-          <Drawer.Screen name="Spaceships" component={Spaceships} />
-        </Drawer.Navigator>
-      )}
+      {Platform.OS === "android" ||
+        (Platform.OS === "web" && (
+          <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Planets" component={Planets} />
+            <Drawer.Screen name="Films" component={Films} />
+            <Drawer.Screen name="Spaceships" component={Spaceships} />
+          </Drawer.Navigator>
+        ))}
     </NavigationContainer>
   );
 }
