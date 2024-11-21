@@ -1,10 +1,10 @@
 import React from "react";
 import { View, ScrollView, Text, TouchableOpacity } from "react-native";
-import styles from "./styles";
+import styles from "../styles";
 
 export default function Swipeable({ onSwipe, name }) {
   function onScroll(e) {
-    e.nativeEvent.contentOffset.x === 200 && onSwipe();
+    e.nativeEvent.contentOffset.x === 200 && onSwipe(name); // Pass name to onSwipe
   }
 
   const scrollProps = {
