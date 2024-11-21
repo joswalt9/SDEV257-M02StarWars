@@ -35,4 +35,38 @@ export default StyleSheet.create({
     padding: 10,
     backgroundColor: "white",
   },
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: "center",
+    padding: 20,
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginVertical: 10,
+  },
+  swipeContainer: {
+    flex: 1,
+    flexDirection: "row",
+    width: 200,
+    height: 30,
+    marginTop: 10,
+  },
+  swipeItem: {
+    width: 200,
+    height: 30,
+    backgroundColor: "azure",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: "slategrey",
+  },
+  swipeItemText: {
+    textAlign: "center",
+    color: "slategrey",
+  },
+  swipeBlank: {
+    width: 200,
+    height: 30,
+  },
 });
