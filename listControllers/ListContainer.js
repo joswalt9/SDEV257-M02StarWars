@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { View } from "react-native";
 import { fetchItems, fetchFilms } from "../api";
 import List from "./List";
 import Modal from "../modal/Modal";
