@@ -13,26 +13,25 @@ export default StyleSheet.create({
     justifyContent: "center",
     paddingTop: 40,
   },
-
   item: {
-    margin: 5,
-    padding: 5,
+    padding: 16,
+    fontSize: 18,
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
     color: "slategrey",
-    backgroundColor: "ghostwhite",
     textAlign: "center",
   },
-
   filter: {
     height: 40,
     width: 200,
   },
-
   controls: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 10,
+    padding: 8,
     backgroundColor: "white",
   },
 });
