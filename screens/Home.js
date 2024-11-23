@@ -1,17 +1,35 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 import styles from "../styles";
 import Modal from "../modal/Modal";
 
 export default function Home() {
-  {
-    /* Modal Variables*/
-  }
   const [searchTerm, setSearchTerm] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
+  // Shared value for scaling animation
+  const scale = useSharedValue(1);
+
+  // Animated style for button
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
   const handleSearchSubmit = () => {
     setModalVisible(true);
+  };
+
+  const handlePressIn = () => {
+    scale.value = withTiming(0.9, { duration: 100 });
+  };
+
+  const handlePressOut = () => {
+    scale.value = withTiming(1, { duration: 100 });
   };
 
   return (
@@ -19,7 +37,6 @@ export default function Home() {
       <Text>Welcome to the Star Wars Database!</Text>
       <Text>Explore Planets, Films, and Spaceships!</Text>
 
-      {/* Modal */}
       <TextInput
         style={{
           height: 40,
@@ -35,8 +52,17 @@ export default function Home() {
         onChangeText={setSearchTerm}
       />
 
-      {/* Submit Button */}
-      <Button title="Submit" onPress={handleSearchSubmit} />
+      {/* Animated Submit Button */}
+      <Animated.View style={[animatedStyle]}>
+        <Pressable
+          onPress={handleSearchSubmit}
+          onPressIn={handlePressIn}
+          onPressOut={handlePressOut}
+          style={buttonStyles.button}
+        >
+          <Text style={buttonStyles.buttonText}>Submit</Text>
+        </Pressable>
+      </Animated.View>
 
       {/* Custom Modal */}
       <Modal
@@ -47,3 +73,18 @@ export default function Home() {
     </View>
   );
 }
+
+const buttonStyles = StyleSheet.create({
+  button: {
+    backgroundColor: "#007BFF",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
