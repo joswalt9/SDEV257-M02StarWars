@@ -53,7 +53,7 @@ export default function Home() {
       />
 
       {/* Animated Submit Button */}
-      <Animated.View style={[animatedStyle]}>
+      <Animated.View style={animatedStyle}>
         <Pressable
           onPress={handleSearchSubmit}
           onPressIn={handlePressIn}
