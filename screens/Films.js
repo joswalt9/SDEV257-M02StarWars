@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, ScrollView } from "react-native";
 import styles from "../styles";
 import ListContainer from "../listControllers/ListContainer";
 import Modal from "../modal/Modal";
@@ -16,36 +16,38 @@ export default function Films({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Films Content</Text>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text>Films Content</Text>
 
-      {/* Modal */}
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: "gray",
-          borderWidth: 1,
-          marginVertical: 20,
-          width: "80%",
-          paddingHorizontal: 8,
-          borderRadius: 5,
-        }}
-        placeholder="Enter search term..."
-        value={searchTerm}
-        onChangeText={setSearchTerm}
-      />
+        {/* Modal */}
+        <TextInput
+          style={{
+            height: 40,
+            borderColor: "gray",
+            borderWidth: 1,
+            marginVertical: 20,
+            width: "80%",
+            paddingHorizontal: 8,
+            borderRadius: 5,
+          }}
+          placeholder="Enter search term..."
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+        />
 
-      {/* Submit Button */}
-      <Button title="Submit" onPress={handleSearchSubmit} />
+        {/* Submit Button */}
+        <Button title="Submit" onPress={handleSearchSubmit} />
 
-      {/* Custom Modal */}
-      <Modal
-        visible={modalVisible}
-        content={`You entered: ${searchTerm}`}
-        onClose={() => setModalVisible(false)}
-      />
+        {/* Custom Modal */}
+        <Modal
+          visible={modalVisible}
+          content={`You entered: ${searchTerm}`}
+          onClose={() => setModalVisible(false)}
+        />
 
-      <ListContainer endpoint="films" />
-    </View>
+        <ListContainer endpoint="films" />
+      </View>
+    </ScrollView>
   );
 }

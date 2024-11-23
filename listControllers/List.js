@@ -1,15 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Text, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import styles from "../styles";
 import ListControls from "./ListControls";
+import Swipeable from "../components/Swipeable";
 
-export default function List({ Controls, data, onFilter, onSort, asc }) {
+export default function List({
+  Controls,
+  data,
+  onFilter,
+  onSort,
+  asc,
+  onSwipe,
+}) {
   return (
     <FlatList
       data={data}
       ListHeaderComponent={<Controls {...{ onFilter, onSort, asc }} />}
-      renderItem={({ item }) => <Text style={styles.item}>{item.value}</Text>}
+      renderItem={({ item }) => (
+        <Swipeable onSwipe={() => onSwipe(item.key)} name={item.value} />
+      )}
     />
   );
 }
@@ -20,6 +30,7 @@ List.propTypes = {
   onFilter: PropTypes.func.isRequired,
   onSort: PropTypes.func.isRequired,
   asc: PropTypes.bool.isRequired,
+  onSwipe: PropTypes.func.isRequired,
 };
 
 List.defaultProps = {
