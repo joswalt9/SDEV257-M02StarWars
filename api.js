@@ -32,7 +32,6 @@ export async function fetchItems(endpoint, filter = "", asc = true) {
 
 export async function fetchFilms(filter = "", asc = true) {
   try {
-    console.log("Fetching films...");
     const res = await fetch(`${BASE_URL}/films`);
     const data = await res.json();
 
