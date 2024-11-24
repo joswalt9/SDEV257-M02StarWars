@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Platform } from "react-native";
+import { Platform, Text, View } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 import Home from "./screens/Home";
 import Planets from "./screens/Planets";
 import Films from "./screens/Films";

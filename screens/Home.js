@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -12,12 +12,15 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
-import styles from "../styles";
+import NetInfo from "@react-native-community/netinfo"; // Import NetInfo for network status
 import Modal from "../modal/Modal";
+import styles from "../styles";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [isOnline, setIsOnline] = useState(false); // Track online status
+  const [isOffline, setIsOffline] = useState(false); // Track offline status
 
   // Shared value for scaling animation
   const scale = useSharedValue(1);
@@ -26,6 +29,24 @@ export default function Home() {
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
+
+  // Set up network status listener
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      if (state.isConnected) {
+        setIsOnline(true);
+        setIsOffline(false);
+      } else {
+        setIsOnline(false);
+        setIsOffline(true);
+      }
+    });
+
+    // Clean up the listener when the component is unmounted
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleSearchSubmit = () => {
     setModalVisible(true);
@@ -84,6 +105,21 @@ export default function Home() {
         content={`You entered: ${searchTerm}`}
         onClose={() => setModalVisible(false)}
       />
+
+      <View style={{ marginTop: 20 }}>
+        {/* Display the online/offline message */}
+        {isOnline && (
+          <View style={{ backgroundColor: "green", padding: 10 }}>
+            <Text style={{ color: "white" }}>You are online!</Text>
+          </View>
+        )}
+
+        {isOffline && (
+          <View style={{ backgroundColor: "red", padding: 10 }}>
+            <Text style={{ color: "white" }}>You are offline!</Text>
+          </View>
+        )}
+      </View>
     </View>
   );
 }
