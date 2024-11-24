@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, Image } from "react-native";
 import styles from "../styles";
 import ListContainer from "../listControllers/ListContainer";
 import Modal from "../modal/Modal";
@@ -17,7 +17,12 @@ export default function Planets({ navigation }) {
 
   return (
     <View style={styles.listContainer}>
-      <Text>Planets Content</Text>
+      {/* Image */}
+      <Image
+        source={require("../assets/starwarslogo.png")}
+        style={{ width: "25%", height: "25%" }}
+        resizeMode="contain"
+      />
 
       {/* Modal */}
       <TextInput

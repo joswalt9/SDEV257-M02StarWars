@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, ScrollView } from "react-native";
+import { View, Text, TextInput, Button, ScrollView, Image } from "react-native";
 import styles from "../styles";
 import ListContainer from "../listControllers/ListContainer";
 import Modal from "../modal/Modal";
@@ -18,7 +18,12 @@ export default function Films({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        <Text>Films Content</Text>
+        {/* Image */}
+        <Image
+          source={require("../assets/starwarslogo.png")}
+          style={{ width: "25%", height: "25%" }}
+          resizeMode="contain"
+        />
 
         {/* Modal */}
         <TextInput

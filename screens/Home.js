@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  StyleSheet,
+  Image,
+} from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -34,6 +41,13 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      {/* Image */}
+      <Image
+        source={require("../assets/starwarslogo.png")}
+        style={{ width: "25%", height: "25%" }}
+        resizeMode="contain"
+      />
+
       <Text>Welcome to the Star Wars Database!</Text>
       <Text>Explore Planets, Films, and Spaceships!</Text>
 
