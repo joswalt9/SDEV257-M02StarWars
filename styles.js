@@ -11,7 +11,7 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 40,
+    paddingTop: 0,
   },
 
   item: {
@@ -38,7 +38,7 @@ export default StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     alignItems: "center",
-    padding: 20,
+    padding: 0,
   },
   header: {
     fontSize: 20,

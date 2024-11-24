@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, Image } from "react-native";
+import { View, Text, TextInput, Button, ScrollView, Image } from "react-native";
 import styles from "../styles";
 import ListContainer from "../listControllers/ListContainer";
 import Modal from "../modal/Modal";
 
 export default function Planets({ navigation }) {
-  {
-    /* Modal Variables*/
-  }
   const [searchTerm, setSearchTerm] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -16,7 +13,7 @@ export default function Planets({ navigation }) {
   };
 
   return (
-    <View style={styles.listContainer}>
+    <View style={styles.container}>
       {/* Image */}
       <Image
         source={require("../assets/starwarslogo.png")}
@@ -24,33 +21,37 @@ export default function Planets({ navigation }) {
         resizeMode="contain"
       />
 
-      {/* Modal */}
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: "gray",
-          borderWidth: 1,
-          marginVertical: 20,
-          width: "80%",
-          paddingHorizontal: 8,
-          borderRadius: 5,
-        }}
-        placeholder="Enter search term..."
-        value={searchTerm}
-        onChangeText={setSearchTerm}
-      />
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.listContainer}>
+          {/* Modal */}
+          <TextInput
+            style={{
+              height: 40,
+              borderColor: "gray",
+              borderWidth: 1,
+              marginVertical: 20,
+              width: "80%",
+              paddingHorizontal: 8,
+              borderRadius: 5,
+            }}
+            placeholder="Enter search term..."
+            value={searchTerm}
+            onChangeText={setSearchTerm}
+          />
 
-      {/* Submit Button */}
-      <Button title="Submit" onPress={handleSearchSubmit} />
+          {/* Submit Button */}
+          <Button title="Submit" onPress={handleSearchSubmit} />
 
-      {/* Custom Modal */}
-      <Modal
-        visible={modalVisible}
-        content={`You entered: ${searchTerm}`}
-        onClose={() => setModalVisible(false)}
-      />
+          {/* Custom Modal */}
+          <Modal
+            visible={modalVisible}
+            content={`You entered: ${searchTerm}`}
+            onClose={() => setModalVisible(false)}
+          />
 
-      <ListContainer endpoint="planets" />
+          <ListContainer endpoint="planets" />
+        </View>
+      </ScrollView>
     </View>
   );
 }
