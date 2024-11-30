@@ -12,7 +12,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
-import NetInfo from "@react-native-community/netinfo"; // Import NetInfo for network status
+import NetInfo from "@react-native-community/netinfo";
 import Modal from "../modal/Modal";
 import styles from "../styles";
 
