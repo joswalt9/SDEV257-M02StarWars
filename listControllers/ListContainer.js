@@ -27,8 +27,11 @@ export default function ListContainer({ endpoint }) {
   }, [endpoint, filter, asc]);
 
   const handleSwipe = (item) => {
-    navigation.navigate("PlanetDetail", { details: item.details });
-    console.log("Navigating with Details:", item.details);
+    if (endpoint === "planets") {
+      navigation.navigate("PlanetDetail", { details: item.details });
+    } else {
+      console.warn("Navigation to PlanetDetail is only allowed for planets.");
+    }
   };
 
   return (

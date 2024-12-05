@@ -21,8 +21,14 @@ function PlanetsStack() {
       <Stack.Screen
         name="PlanetDetail"
         component={PlanetDetail}
-        options={{ title: "Planet Details" }}
+        options={{
+          title: "Planet Details",
+          gestureEnabled: false,
+        }}
       />
+      {/* Prevent swiping to Planet Details */}
+      <Stack.Screen name="Spaceships" component={Spaceships} />
+      <Stack.Screen name="Films" component={Films} />
     </Stack.Navigator>
   );
 }
