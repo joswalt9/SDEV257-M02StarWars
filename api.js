@@ -13,6 +13,7 @@ async function fetchData(endpoint) {
 
 export async function fetchItems(endpoint, filter = "", asc = true) {
   const items = await fetchData(endpoint);
+  console.log("Fetched items from API:", items);
 
   // Sort Feature
   return items

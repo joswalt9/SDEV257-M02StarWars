@@ -16,8 +16,6 @@ import NetInfo from "@react-native-community/netinfo";
 import styles from "../styles";
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [modalVisible, setModalVisible] = useState(false);
   const [isOnline, setIsOnline] = useState(false); // Track online status
   const [isOffline, setIsOffline] = useState(false); // Track offline status
 

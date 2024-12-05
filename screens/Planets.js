@@ -4,6 +4,11 @@ import styles from "../styles";
 import ListContainer from "../listControllers/ListContainer";
 
 export default function Planets({ navigation }) {
+  const handleNavigateToDetail = (planetDetails) => {
+    console.log("Navigating with details:", planetDetails);
+    navigation.navigate("PlanetDetail", { details: planetDetails.properties });
+  };
+
   return (
     <View style={styles.container}>
       {/* Image */}
@@ -16,7 +21,12 @@ export default function Planets({ navigation }) {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.listContainer}>
           {/* Planet List */}
-          <ListContainer endpoint="planets" />
+          <ListContainer
+            endpoint="planets"
+            onSwipe={(planetDetails) =>
+              handleNavigateToDetail(planetDetails.properties)
+            }
+          />
         </View>
       </ScrollView>
     </View>

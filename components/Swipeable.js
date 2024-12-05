@@ -4,7 +4,9 @@ import styles from "../styles";
 
 export default function Swipeable({ onSwipe, name }) {
   function onScroll(e) {
-    e.nativeEvent.contentOffset.x === 200 && onSwipe(name); // Pass name to onSwipe
+    if (e.nativeEvent.contentOffset.x === 200) {
+      onSwipe();
+    }
   }
 
   const scrollProps = {

@@ -3,14 +3,29 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Platform, Text, View } from "react-native";
-import NetInfo from "@react-native-community/netinfo";
 import Home from "./screens/Home";
 import Planets from "./screens/Planets";
 import Films from "./screens/Films";
 import Spaceships from "./screens/Spaceships";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import PlanetDetail from "./screens/PlanetDetail";
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+
+function PlanetsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Planets" component={Planets} />
+      <Stack.Screen
+        name="PlanetDetail"
+        component={PlanetDetail}
+        options={{ title: "Planet Details" }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -18,14 +33,14 @@ export default function App() {
       {Platform.OS === "ios" ? (
         <Tab.Navigator>
           <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Planets" component={Planets} />
+          <Tab.Screen name="Planets" component={PlanetsStack} />
           <Tab.Screen name="Films" component={Films} />
           <Tab.Screen name="Spaceships" component={Spaceships} />
         </Tab.Navigator>
       ) : (
         <Drawer.Navigator>
           <Drawer.Screen name="Home" component={Home} />
-          <Drawer.Screen name="Planets" component={Planets} />
+          <Drawer.Screen name="Planets" component={PlanetsStack} />
           <Drawer.Screen name="Films" component={Films} />
           <Drawer.Screen name="Spaceships" component={Spaceships} />
         </Drawer.Navigator>

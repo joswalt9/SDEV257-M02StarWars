@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FlatList } from "react-native";
-import styles from "../styles";
 import ListControls from "./ListControls";
 import Swipeable from "../components/Swipeable";
 
@@ -18,7 +17,7 @@ export default function List({
       data={data}
       ListHeaderComponent={<Controls {...{ onFilter, onSort, asc }} />}
       renderItem={({ item }) => (
-        <Swipeable onSwipe={() => onSwipe(item.key)} name={item.value} />
+        <Swipeable onSwipe={() => onSwipe(item)} name={item.value} />
       )}
     />
   );

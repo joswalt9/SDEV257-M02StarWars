@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { fetchItems, fetchFilms } from "../api";
 import List from "./List";
-import Modal from "../modal/Modal";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ListContainer({ endpoint }) {
+  const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [asc, setAsc] = useState(true);
   const [filter, setFilter] = useState("");
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalContent, setModalContent] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,15 +19,16 @@ export default function ListContainer({ endpoint }) {
       const mappedData = items.map((item, i) => ({
         key: i.toString(),
         value: endpoint === "films" ? item.properties.title : item.name,
+        details: item,
       }));
       setData(mappedData);
     };
     fetchData();
   }, [endpoint, filter, asc]);
 
-  const handleSwipe = (itemText) => {
-    setModalContent(itemText); // Set the text of the item
-    setModalVisible(true); // Show the modal
+  const handleSwipe = (item) => {
+    navigation.navigate("PlanetDetail", { details: item.details });
+    console.log("Navigating with Details:", item.details);
   };
 
   return (
@@ -39,12 +39,6 @@ export default function ListContainer({ endpoint }) {
         onFilter={(text) => setFilter(text)}
         onSort={() => setAsc(!asc)}
         onSwipe={handleSwipe}
-      />
-      {/* Modal */}
-      <Modal
-        visible={modalVisible}
-        content={modalContent}
-        onClose={() => setModalVisible(false)}
       />
     </View>
   );
