@@ -17,7 +17,11 @@ const Stack = createNativeStackNavigator();
 function PlanetsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Planets" component={Planets} />
+      <Stack.Screen
+        name="Planets"
+        component={Planets}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="PlanetDetail"
         component={PlanetDetail}
